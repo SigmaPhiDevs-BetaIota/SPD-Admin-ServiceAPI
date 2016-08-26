@@ -1,0 +1,27 @@
+{
+  "name": "spd-betaiota-api",
+  "version": "1.0.0",
+  "description": "API serving the sigma phi delta beta iota website",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "start":"node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SigmaPhiDevs-BetaIota/SPD-Admin-ServiceAPI.git"
+  },
+  "author": "SigPhiDevs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SigmaPhiDevs-BetaIota/SPD-Admin-ServiceAPI/issues"
+  },
+  "homepage": "https://github.com/SigmaPhiDevs-BetaIota/SPD-Admin-ServiceAPI#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2"
+  }
+}
