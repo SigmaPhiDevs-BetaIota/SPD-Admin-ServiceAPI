@@ -3,13 +3,24 @@ var app =  express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+var nodeMailer = require('nodemailer');
 
 app.post('/mail', (req, res) => {
-	console.log("Got mail req");
-	console.log(req.body.name);
-	console.log(req.body.email);
-	console.log(req.body.message);
-	res.end("Hello");
+	var smtpTransport = getTransport();
+	var mailOptions = {
+		to: "colemalban@gmail.com",
+		subject:"Mail from SigPhi Website: Sender "+req.body.name,
+		text: req.body.message+" :Reply at "+req.body.email;
+	}
+	smtpTransport.sendMail(mailOptions, function(error, resp){
+		if(error){
+			console.log(error);
+		}
+		else{
+			console.log("Sent");
+		}
+	});
+	res.end("status=MessageSent");
 });
 
 app.get('/', (req, res) => {
@@ -19,3 +30,14 @@ app.get('/', (req, res) => {
 app.listen(5000, () => {
     console.log("API running on port 5000");
 });
+
+//Create  a mailer transport
+function getTransport(){
+	return smtpTransport = nodemailer.createTransport("SMTP", {
+		service: "Gmail",
+		auth: {
+			user:"sigmaphideltawebmaster@gmail.com",
+			pass:"betaiota"
+		}
+	});
+}
