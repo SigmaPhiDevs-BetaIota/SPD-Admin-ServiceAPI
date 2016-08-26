@@ -4,12 +4,13 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 var nodemailer = require('nodemailer');
+var smtp = require('nodemailer-smtp-transport');
 
 app.post('/mail', (req, res) => {
 	var smtpTransport = getTransport();
 	var mailOptions = {
 		from:req.body.email,
-		to: "sigmaphideltawebmaster@gmail.com"
+		to: "sigmaphideltawebmaster@gmail.com",
 		subject:"Mail from SigPhi Website: Sender "+req.body.name,
 		text: req.body.message
 	}
@@ -34,11 +35,11 @@ app.listen(5000, () => {
 
 //Create  a mailer transport
 function getTransport(){
-	return smtpTransport = nodemailer.createTransport("SMTP", {
+	return smtpTransport = nodemailer.createTransport((smtp,( {
 		service: "Mailgun",
 		auth: {
-			user:"sandboxdf6ae058864f4ea2b4f3abeb994983b0.mailgun.org",
-			pass:"betaiota"
+			user:"postmaster@sandboxdf6ae058864f4ea2b4f3abeb994983b0.mailgun.org",
+			pass:"202a5979ed3cb1d9860e36077dbc1925"
 		}
-	});
+	})));
 }
