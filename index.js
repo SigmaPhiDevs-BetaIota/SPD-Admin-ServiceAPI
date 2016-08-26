@@ -3,14 +3,14 @@ var app =  express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
-var nodeMailer = require('nodemailer');
+var nodemailer = require('nodemailer');
 
 app.post('/mail', (req, res) => {
 	var smtpTransport = getTransport();
 	var mailOptions = {
 		to: "colemalban@gmail.com",
 		subject:"Mail from SigPhi Website: Sender "+req.body.name,
-		text: req.body.message+" :Reply at "+req.body.email;
+		text: req.body.message+" :Reply at "+req.body.email
 	}
 	smtpTransport.sendMail(mailOptions, function(error, resp){
 		if(error){
