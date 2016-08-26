@@ -5,9 +5,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.post('/mail', (req, res) => {
+	console.log("Got mail req");
 	console.log(req.body.name);
 	console.log(req.body.email);
 	console.log(req.body.message);
+	res.end("Hello");
 });
 
 app.get('/', (req, res) => {
