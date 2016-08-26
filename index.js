@@ -8,9 +8,10 @@ var nodemailer = require('nodemailer');
 app.post('/mail', (req, res) => {
 	var smtpTransport = getTransport();
 	var mailOptions = {
-		to: "colemalban@gmail.com",
+		from:req.body.email,
+		to: "sigmaphideltawebmaster@gmail.com"
 		subject:"Mail from SigPhi Website: Sender "+req.body.name,
-		text: req.body.message+" :Reply at "+req.body.email
+		text: req.body.message
 	}
 	smtpTransport.sendMail(mailOptions, function(error, resp){
 		if(error){
@@ -34,9 +35,9 @@ app.listen(5000, () => {
 //Create  a mailer transport
 function getTransport(){
 	return smtpTransport = nodemailer.createTransport("SMTP", {
-		service: "Gmail",
+		service: "Mailgun",
 		auth: {
-			user:"sigmaphideltawebmaster@gmail.com",
+			user:"sandboxdf6ae058864f4ea2b4f3abeb994983b0.mailgun.org",
 			pass:"betaiota"
 		}
 	});
